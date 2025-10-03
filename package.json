@@ -1,0 +1,57 @@
+{
+  "name": "secretseditor",
+  "displayName": "SecretsEditor",
+  "description": "Edit user secrets",
+  "version": "0.0.1",
+  "publisher": "Johan Nicklasson",
+  "engines": {
+    "vscode": "^1.104.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "dotnet",
+    "secrets",
+    "csproj",
+    "user-secrets",
+    "configuration"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JohanNickl/SecretsEditor.git"
+  },
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "secretseditor.editSecrets",
+        "title": "Edit Secrets"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "secretseditor.editSecrets",
+          "when": "resourceExtname == .csproj",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src"
+  },
+  "devDependencies": {
+    "@types/node": "22.x",
+    "@types/vscode": "^1.104.0",
+    "@typescript-eslint/eslint-plugin": "^8.45.0",
+    "@typescript-eslint/parser": "^8.45.0",
+    "eslint": "^9.36.0",
+    "typescript": "^5.9.3"
+  }
+}

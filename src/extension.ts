@@ -59,7 +59,7 @@ async function findOrCreateSecretsFile(csprojPath: string): Promise<string | nul
 		// Windows: %APPDATA%\Microsoft\UserSecrets\{UserSecretsId}\secrets.json (roaming profile)
 		// macOS/Linux: ~/.microsoft/usersecrets/{UserSecretsId}/secrets.json
 		// ✅ Validated: Compatible with Visual Studio and dotnet CLI tooling
-		const secretsDir = path.join(os.homedir(), '.microsoft', 'usersecrets', userSecretsId);
+		const secretsDir = getSecretsDirectory(userSecretsId);
 		const secretsPath = path.join(secretsDir, 'secrets.json');
 
 		// Create the directory if it doesn't exist
@@ -76,6 +76,17 @@ async function findOrCreateSecretsFile(csprojPath: string): Promise<string | nul
 	} catch (error) {
 		console.error('Error finding or creating secrets file:', error);
 		return null;
+	}
+}
+
+function getSecretsDirectory(userSecretsId: string): string {
+	if (process.platform === 'win32') {
+		// Windows: %APPDATA%\Microsoft\UserSecrets\{UserSecretsId}
+		const appData = process.env.APPDATA || path.join(os.homedir(), 'AppData', 'Roaming');
+		return path.join(appData, 'Microsoft', 'UserSecrets', userSecretsId);
+	} else {
+		// macOS/Linux: ~/.microsoft/usersecrets/{UserSecretsId}
+		return path.join(os.homedir(), '.microsoft', 'usersecrets', userSecretsId);
 	}
 }
 

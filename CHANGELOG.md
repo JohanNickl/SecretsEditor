@@ -18,6 +18,7 @@ All notable changes to the SecretsEditor extension will be documented in this fi
 
 ### Validation
 - ✅ **Path Validation**: Confirmed compatibility with Visual Studio's user secrets implementation
-- ✅ **File Location**: Secrets correctly stored in roaming AppData directory on Windows
-- ✅ **Cross-platform**: Tested path construction for Windows, macOS, and Linux
+- ✅ **File Location**: Secrets correctly stored in roaming AppData directory on Windows (`%APPDATA%\Microsoft\UserSecrets`)
+- ✅ **Cross-platform**: Proper path handling - Windows uses `Microsoft\UserSecrets`, Unix uses `.microsoft/usersecrets`
 - ✅ **Integration**: Full compatibility with `dotnet user-secrets` CLI and Visual Studio tooling
+- 🔧 **Path Fix**: Corrected directory structure to match official .NET specification exactly

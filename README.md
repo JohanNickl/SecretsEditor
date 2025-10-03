@@ -35,10 +35,10 @@ When you use "Edit Secrets", the extension:
 Secrets are stored following .NET conventions:
 
 - **Windows**: `%APPDATA%\Microsoft\UserSecrets\{UserSecretsId}\secrets.json`
-  - Roaming profile: `C:\Users\{username}\AppData\Roaming\Microsoft\UserSecrets\{UserSecretsId}\secrets.json`
+  - Full path: `C:\Users\{username}\AppData\Roaming\Microsoft\UserSecrets\{UserSecretsId}\secrets.json`
 - **macOS/Linux**: `~/.microsoft/usersecrets/{UserSecretsId}/secrets.json`
 
-> ✅ **Validation Confirmed**: Extension tested and validated against Visual Studio's user secrets implementation. Files are correctly located in the roaming AppData directory on Windows, ensuring compatibility with all .NET tooling.
+> ✅ **Path Validation**: Extension uses the exact same paths as Visual Studio and `dotnet user-secrets` CLI. Tested and confirmed compatible with all .NET tooling.
 
 ## ⚠️ Known Limitations
 

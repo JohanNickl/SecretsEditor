@@ -2,7 +2,7 @@
   "name": "secretseditor",
   "displayName": "SecretsEditor",
   "description": "Edit user secrets",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "johannicklasson",
   "engines": {
     "vscode": "^1.104.0"

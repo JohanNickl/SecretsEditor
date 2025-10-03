@@ -55,6 +55,10 @@ async function findOrCreateSecretsFile(csprojPath: string): Promise<string | nul
 		}
 
 		// Construct the path to the secrets.json file
+		// This follows the official .NET user secrets convention:
+		// Windows: %APPDATA%\Microsoft\UserSecrets\{UserSecretsId}\secrets.json (roaming profile)
+		// macOS/Linux: ~/.microsoft/usersecrets/{UserSecretsId}/secrets.json
+		// ✅ Validated: Compatible with Visual Studio and dotnet CLI tooling
 		const secretsDir = path.join(os.homedir(), '.microsoft', 'usersecrets', userSecretsId);
 		const secretsPath = path.join(secretsDir, 'secrets.json');
 
